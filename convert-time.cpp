@@ -14,24 +14,24 @@ int main(int argc, char *argv[]) {
     infile.open(argv[1]); // Opens file stream from existing file
 
     //get line
-    std::getline(infile, str_line);
+    for (std::string line; std::getline(infile, line);){
 
+        /****************
+         * Add section for parsing comma-separated line for time field.
+         * 
+        *****************/
 
-    /****************
-     * Add section for parsing comma-separated line for time field.
-     * 
-    *****************/
+        // convert time
+        time_seconds = std::stoi(str_line); //Convert the string to an integer (even though it is a double)
 
-    // convert time
-    time_seconds = std::stoi(str_line); //Convert the string to an integer (even though it is a double)
+        std::time_t time_object(time_seconds); //Convert to object of type time_t for localtime()
 
-    std::time_t time_object(time_seconds); //Convert to object of type time_t for localtime()
-
-    std::tm *tm_ptr = std::localtime(&time_object); //pointer to tm object
-    std::string ascii_time = std::asctime(tm_ptr); // Converts to human-readable date
+        std::tm *tm_ptr = std::localtime(&time_object); //pointer to tm object
+        std::string ascii_time = std::asctime(tm_ptr); // Converts to human-readable date
     
-    // write to file or console new converted time in the comma-separated line
-    std::cout << "Timestamp: " << ascii_time << "\n";
-
+        // write to file or console new converted time in the comma-separated line
+        std::cout << "Timestamp: " << ascii_time << "\n";
+    
+    }
     return (0);
 }
