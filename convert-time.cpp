@@ -1,17 +1,22 @@
 #include <iostream>
 #include <assert.h>
 #include <fstream>
+#include <ctime>
 
 std::fstream infile; // The stream that we use to open the file
 
 int main(int argc, char *argv[]) {
     std::string str_line;
     std::string time_string;
+    std::string header_string;
 
     long int time_seconds;
 
     // open input csv
     infile.open(argv[1]); // Opens file stream from existing file
+
+    std::getline(infile, header_string);
+    std::cout << header_string;
 
     //get line
     for (std::string line; std::getline(infile, line);){
