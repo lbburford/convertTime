@@ -30,7 +30,7 @@ class line_number {
 
 line_number::line_number(std::string file_name) {
     infile.open(file_name); //Opens file stream from existing file
-    if (infile.fail()) //Tests for failure of opening file
+    if (infile.bad()) //Tests for failure of opening file
     {
         std::cerr << "Unable to open " << file_name << "\n";
         exit(8);
