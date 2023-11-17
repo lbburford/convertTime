@@ -30,6 +30,11 @@ class line_number {
 
 line_number::line_number(std::string file_name) {
     infile.open(file_name); //Opens file stream from existing file
+    if (infile.fail()) //Tests for failure of opening file
+    {
+        std::cerr << "Unable to open " << file_name << "\n";
+        exit(8);
+    }
     char_position = 0; //Init char position
     line_position = 0; //Init line position
 }
@@ -64,10 +69,17 @@ long int line_number::get_char_pos() {
 }
 
 int main() {
-    line_number ln("out.txt"); //Instantiate an object called ln
+    line_number ln("input.txt"); //Instantiate an object called ln
 
     ln.goto_line(55); //Set line
 
     std::cout << "Current line position: " << ln.get_current_line() << "\n"; //Output current line
     std::cout << "Character position of line: " << ln.get_char_pos() << "\n"; //Output the number of characters before beginning of line
+
+    ln.goto_line(68); // Set line
+
+    std::cout << "Current line position: " << ln.get_current_line() << "\n";  // Output current line
+    std::cout << "Character position of line: " << ln.get_char_pos() << "\n"; // Output the number of characters before beginning
+
+    return (0);
 }
