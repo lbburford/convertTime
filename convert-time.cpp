@@ -26,6 +26,10 @@ int main(int argc, char *argv[]) {
     long int time_seconds; 
 
     // open input csv
+    if(argc != 2) {
+        std::cerr << "Error: Incorrect number of arguments\n";
+        exit(8);
+    }
     infile.open(argv[1]); // Opens file stream from existing file
 
     std::getline(infile, header_string); //Take header off
